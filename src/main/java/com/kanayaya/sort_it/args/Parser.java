@@ -10,12 +10,12 @@ import java.util.*;
 import java.util.function.Consumer;
 
 public class Parser {
-    private static final Map<String, Consumer<Parser>> types = new HashMap<>();
+    private static final Map<String, Consumer<Parser>> actions = new HashMap<>();
     static {
-        types.put("-s", x -> setChecked(x, new NoSpaceString()));
-        types.put("-i", x -> setChecked(x, new CheckedInteger()));
-        types.put("-d", x -> setChecked(x, Comparator.reverseOrder()));
-        types.put("-a", x -> setChecked(x, Comparator.naturalOrder()));
+        actions.put("-s", x -> setChecked(x, new NoSpaceString()));
+        actions.put("-i", x -> setChecked(x, new CheckedInteger()));
+        actions.put("-d", x -> setChecked(x, Comparator.reverseOrder()));
+        actions.put("-a", x -> setChecked(x, Comparator.naturalOrder()));
     }
 
     private static void setChecked(Parser x, Comparator<? extends Comparable<?>> order) {
@@ -38,7 +38,7 @@ public class Parser {
         for (Iterator<String> iterator = strings.iterator(); iterator.hasNext(); ) {
             String arg = iterator.next();
             if (arg.startsWith("-")) {
-                Optional.of(types.get(arg))
+                Optional.of(actions.get(arg))
                         .orElse(x -> System.out.println("Invalid argument: '" + arg + "' in " + x))
                         .accept(this);
                 iterator.remove();
