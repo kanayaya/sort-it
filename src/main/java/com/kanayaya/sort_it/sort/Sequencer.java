@@ -14,7 +14,11 @@ public class Sequencer<T> implements Function<T, T> {
 
     @Override
     public T apply(T t) {
-        if (t == null) return cached;
+        if (t == null) {
+            T result = cached;
+            cached = null;
+            return result;
+        }
         if (source.apply(cached, t) == t) {
             T result = cached;
             cached = t;
