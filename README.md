@@ -25,7 +25,7 @@ Pre-install maven and git. set PATH variable to both
 ```
 And now you in folder with sort-it.exe.
 
-#### You could only use it on Windows:
+### You could only use it on Windows:
 flags:  
 -a ascendant order / -d descendant order #not required, ascendant is default  
 -i integers / -s strings #required
@@ -67,7 +67,7 @@ then you should specify not less than one source file
 ```
 Следуя инструкциям вы окажетесь в папке с файлом sort-it.exe.
 
-#### Использовать можно только на Windows:
+### Использовать можно только на Windows:
 Флаги:  
 -a по-возрастанию / -d по-убыванию #необязательный, по-умолчанию возрастание  
 -i целые числа / -s строки #обязательный
