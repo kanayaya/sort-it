@@ -1,9 +1,5 @@
 package com.kanayaya.sort_it.args;
 
-import com.kanayaya.sort_it.types.CheckedInteger;
-import com.kanayaya.sort_it.types.Convertable;
-import com.kanayaya.sort_it.types.NoSpaceString;
-
 import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 import java.util.*;
@@ -12,27 +8,27 @@ import java.util.function.Consumer;
 public class Parser {
     private static final Map<String, Consumer<Parser>> actions = new HashMap<>();
     static {
-        actions.put("-s", x -> setChecked(x, new NoSpaceString()));
-        actions.put("-i", x -> setChecked(x, new CheckedInteger()));
-        actions.put("-d", x -> setChecked(x, Comparator.reverseOrder()));
-        actions.put("-a", x -> setChecked(x, Comparator.naturalOrder()));
+        actions.put("-s", x -> setChecked(x, RegisteredTypes.NO_SPACE_STRING));
+        actions.put("-i", x -> setChecked(x, RegisteredTypes.CHECKED_INTEGER));
+        actions.put("-d", x -> setChecked(x, RegisteredOrders.REVERSE));
+        actions.put("-a", x -> setChecked(x, RegisteredOrders.NATURAL));
     }
 
-    private static void setChecked(Parser x, Comparator<? extends Comparable<?>> order) {
+    private static void setChecked(Parser x, RegisteredOrders order) {
         if (x.order == null) x.order = order;
         else System.out.println("Order has already been set. Continuing with first one");
     }
 
-    private static void setChecked(Parser x, Convertable<? extends Comparable<?>> type) {
+    private static void setChecked(Parser x, RegisteredTypes type) {
         if (x.type == null) x.type = type;
-        if (x.order == null) x.order = Comparator.naturalOrder();
+        if (x.order == null) x.order = RegisteredOrders.NATURAL;
         else System.out.println("Data type has already been set. Continuing with first one");
     }
 
-    private Comparator<? extends Comparable<?>> order;
+    private RegisteredOrders order;
     private final List<String> sourcePaths = new ArrayList<>();
     private final String destination;
-    private Convertable<? extends Comparable<?>> type;
+    private RegisteredTypes type;
 
     public Parser(String[] args) {
         if (args.length < 1) throw new IllegalArgumentException("Specify arguments before using program:\n" +
@@ -72,8 +68,12 @@ public class Parser {
         }
     }
 
-    public <T extends Comparable<? super T>> Comparator<T> getOrder() {
-        return (Comparator<T>) order;
+    public RegisteredOrders getOrder() {
+        return order;
+    }
+
+    public RegisteredTypes getType() {
+        return type;
     }
 
     public List<String> getSourcePaths() {
