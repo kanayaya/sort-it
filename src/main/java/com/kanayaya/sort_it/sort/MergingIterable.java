@@ -50,6 +50,7 @@ public class MergingIterable<T extends Comparable<? super T>> implements Iterabl
             }
 
             private T getClosest() {
+                if (iterators.isEmpty() || values.isEmpty()) {return null;}
                 T result = null;
                 int index = 0;
                 for (int i = 0; i < iterators.size(); i++) {

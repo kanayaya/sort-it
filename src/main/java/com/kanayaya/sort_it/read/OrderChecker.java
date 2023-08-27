@@ -20,17 +20,19 @@ public class OrderChecker<T extends Comparable<? super T>> implements Iterable<T
     public Iterator<T> iterator() {
         return new Iterator<T>() {
             private final Iterator<T> sourceIterator = source.iterator();
-            private final Sequencer<T> sequencer = new Sequencer<>(new Dispencer<>(order), sourceIterator.next());
+            private Sequencer<T> sequencer;
             private T last = null;
             @Override
             public boolean hasNext() {
                 if (sourceIterator.hasNext()) return true;
+                if (sequencer == null) sequencer = new Sequencer<>(new Dispencer<>(order), null);
                 last = sequencer.apply(null);
                 return last != null;
             }
 
             @Override
             public T next() {
+                if (sequencer == null) sequencer = new Sequencer<>(new Dispencer<>(order), sourceIterator.next());
                 if (sourceIterator.hasNext()) {
                     T next = sourceIterator.next();
                     T result = sequencer.apply(next);
