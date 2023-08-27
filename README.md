@@ -13,6 +13,7 @@ file merging program
 ## Installation
 
 Install my project with maven.
+pre-install maven and git. set PATH variable to both
 #### Build on Linux, Windows:
 
 ```bash
@@ -53,6 +54,7 @@ then you should specify not less than one source file
 ## Установка
 
 Производится с помощью Maven.
+Установите Maven и Git, укажите пути к их папкам bin в PATH переменной среды
 #### Сборка на Linux, Windows:
 
 ```bash
