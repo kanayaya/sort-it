@@ -1,5 +1,6 @@
 
 # sort-it
+(По-русски ниже)
 
 file merging program
 
@@ -32,6 +33,46 @@ then you should specify destination file
 then you should specify not less than one source file
 
 #### examples:
+
+```cmd
+  .\sort-it.exe -s c:\destination\file c:\any\amount c:\of\source\files
+```
+```cmd
+  .\sort-it.exe -d -i c:\destination\file c:\any\amount c:\of\source\files
+```
+# sort-it
+
+Программа слияния файлов
+
+
+## Автор
+
+- [@kanayaya](https://github.com/kanayaya)
+
+
+## Установка
+
+Производится с помощью Maven.
+#### Сборка на Linux, Windows:
+
+```bash
+  git clone https://github.com/kanayaya/sort-it.git
+  cd sort-it
+  mvn package
+  cd target
+```
+Следуя инструкциям вы окажетесь в папке с файлом sort-it.exe.
+
+#### Использовать можно только на Windows:
+Флаги:  
+-a по-возрастанию / -d по-убыванию #необязательный, по-умолчанию возрастание  
+-i целые числа / -s строки #обязательный
+
+затем укажите файл куда писать
+
+затем укажите сколько угодно (не менее одного) файлов-источников
+
+#### Примеры:
 
 ```cmd
   .\sort-it.exe -s c:\destination\file c:\any\amount c:\of\source\files
