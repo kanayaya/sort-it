@@ -6,7 +6,7 @@ import com.kanayaya.sort_it.sort.Sequencer;
 import java.util.Comparator;
 import java.util.Iterator;
 
-public class OrderChecker<T extends Comparable<T>> implements Iterable<T> {
+public class OrderChecker<T extends Comparable<? super T>> implements Iterable<T> {
     private final Iterable<T> source;
     private final Comparator<T> order;
 

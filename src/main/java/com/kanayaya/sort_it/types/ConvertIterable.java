@@ -2,7 +2,7 @@ package com.kanayaya.sort_it.types;
 
 import java.util.Iterator;
 
-public class ConvertIterable<T extends Comparable<T>> implements Iterable<T> {
+public class ConvertIterable<T extends Comparable<? super T>> implements Iterable<T> {
     private final Convertable<T> convertable;
     private final Iterable<String> values;
 

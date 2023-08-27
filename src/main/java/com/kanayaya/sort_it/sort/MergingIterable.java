@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MergingIterable<T extends Comparable<T>> implements Iterable<T> {
+public class MergingIterable<T extends Comparable<? super T>> implements Iterable<T> {
     private final List<Iterable<T>> sources;
     private final Comparator<T> comparator;
 

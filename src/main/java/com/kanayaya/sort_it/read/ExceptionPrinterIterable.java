@@ -2,7 +2,7 @@ package com.kanayaya.sort_it.read;
 
 import java.util.Iterator;
 
-public class ExceptionPrinterIterable<T extends Comparable<T>> implements Iterable<T> {
+public class ExceptionPrinterIterable<T extends Comparable<? super T>> implements Iterable<T> {
     private final Iterable<T> source;
 
     public ExceptionPrinterIterable(Iterable<T> source) {
