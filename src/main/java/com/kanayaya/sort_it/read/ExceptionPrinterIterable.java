@@ -30,7 +30,7 @@ public class ExceptionPrinterIterable<T extends Comparable<? super T>> implement
                 while (it.hasNext()) {
                     try {
                         return it.next();
-                    } catch (IllegalStateException | IllegalArgumentException e) {
+                    } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
                 }

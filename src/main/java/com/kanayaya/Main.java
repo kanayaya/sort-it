@@ -50,12 +50,12 @@ public class Main {
     private static <T extends Comparable<? super T>> void readMergeAndWrite(String destination, Comparator<T> comparator, Convertable<T> convertable, List<String> sourcePaths) {
         MergingIterable<T> result = new MergingIterable<>(
                     sourcePaths.stream().map(path ->
-                                    new OrderChecker<>(
-                                            new ExceptionPrinterIterable<>(
+                                    new ExceptionPrinterIterable<>(
+                                            new OrderChecker<>(
                                                     new ConvertIterable<>(
                                                             convertable,
-                                                            new IterableFile(path))),
-                                            comparator))
+                                                            new IterableFile(path)),
+                                                    comparator)))
                             .collect(Collectors.toList()),
                 comparator
             );
