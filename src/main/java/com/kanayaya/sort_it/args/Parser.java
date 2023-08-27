@@ -3,6 +3,7 @@ package com.kanayaya.sort_it.args;
 import com.kanayaya.sort_it.types.CheckedInteger;
 import com.kanayaya.sort_it.types.Convertable;
 import com.kanayaya.sort_it.types.NoSpaceString;
+import com.kanayaya.sort_it.types.RegisteredTypes;
 
 import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
@@ -23,18 +24,24 @@ public class Parser {
         else System.out.println("Order has already been set. Continuing with first one");
     }
 
-    private static void setChecked(Parser x, Convertable<?> convertable) {
-        if (x.type == null) x.type = convertable;
+    private static void setChecked(Parser x, Convertable<? extends Comparable<?>> type) {
+        if (x.type == null) x.type = type;
         else System.out.println("Data type has already been set. Continuing with first one");
     }
 
     private Comparator<? extends Comparable<?>> order;
     private final List<String> sourcePaths = new ArrayList<>();
     private final String destination;
-    private Convertable<?> type;
+    private Convertable<? extends Comparable<?>> type;
 
     public Parser(String[] args) {
-        List<String> strings = Arrays.asList(args);
+        if (args.length < 1) throw new IllegalArgumentException("Specify arguments before using program:\n" +
+                " -a or -d for ascending or descending order\n" +
+                " -s or -i for string or integer data type\n" +
+                " valid destination path\n" +
+                " at least one valid data source path\n");
+
+        List<String> strings = new ArrayList<>(Arrays.asList(args));
         for (Iterator<String> iterator = strings.iterator(); iterator.hasNext(); ) {
             String arg = iterator.next();
             if (arg.startsWith("-")) {
@@ -65,8 +72,8 @@ public class Parser {
         }
     }
 
-    public Comparator<? extends Comparable<?>> getOrder() {
-        return order;
+    public <T extends Comparable<? super T>> Comparator<T> getOrder() {
+        return (Comparator<T>) order;
     }
 
     public List<String> getSourcePaths() {
@@ -77,7 +84,7 @@ public class Parser {
         return destination;
     }
 
-    public Convertable<?> getType() {
-        return type;
+    public <T extends Comparable<? super T>> Convertable<T> getType() {
+        return (Convertable<T>) type;
     }
 }
