@@ -1,4 +1,4 @@
-package com.kanayaya.sort_it.types;
+package com.kanayaya.sort_it.args;
 
 public enum RegisteredTypes {
     CHECKED_INTEGER,
