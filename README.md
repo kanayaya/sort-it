@@ -11,9 +11,9 @@ file merging program
 
 
 ## Installation
-Any JDK 8+ required
-Install my project with maven 4.X.X+.
-Internet connection required.
+Any JDK 8+ required  
+Install my project with maven 4.X.X+.  
+Internet connection required.  
 Pre-install maven and git. set PATH variable to both
 #### Build on Linux, Windows:
 
@@ -54,8 +54,8 @@ then you should specify not less than one source file
 
 ## Установка
 Необходимы JDK версии 8 и выше.  
-Сборка производится с помощью Maven версии 4 и выше.
-Необходимо соединение с сетью интернет.
+Сборка производится с помощью Maven версии 4 и выше.  
+Необходимо соединение с сетью интернет.  
 Установите Maven и Git, укажите пути к их папкам bin в PATH переменной среды
 #### Сборка на Linux, Windows:
 
