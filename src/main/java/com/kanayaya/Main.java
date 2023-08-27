@@ -17,8 +17,12 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        Parser parser = new Parser(args);
-        chooseType(parser); // then choose order and start!
+        try {
+            Parser parser = new Parser(args);
+            chooseType(parser); // then choose order and start!
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 
     private static void chooseType(Parser parser) {
