@@ -3,7 +3,6 @@ package com.kanayaya.sort_it.args;
 import com.kanayaya.sort_it.types.CheckedInteger;
 import com.kanayaya.sort_it.types.Convertable;
 import com.kanayaya.sort_it.types.NoSpaceString;
-import com.kanayaya.sort_it.types.RegisteredTypes;
 
 import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
@@ -26,6 +25,7 @@ public class Parser {
 
     private static void setChecked(Parser x, Convertable<? extends Comparable<?>> type) {
         if (x.type == null) x.type = type;
+        if (x.order == null) x.order = Comparator.naturalOrder();
         else System.out.println("Data type has already been set. Continuing with first one");
     }
 
@@ -84,7 +84,4 @@ public class Parser {
         return destination;
     }
 
-    public <T extends Comparable<? super T>> Convertable<T> getType() {
-        return (Convertable<T>) type;
-    }
 }

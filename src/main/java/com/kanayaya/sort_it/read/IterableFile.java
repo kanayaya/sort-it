@@ -37,7 +37,15 @@ public class IterableFile implements Iterable<String> {
 
         @Override
         public boolean hasNext() {
-            return next != null;
+            boolean has = next != null;
+            if (! has) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return has;
         }
 
         @Override
