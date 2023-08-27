@@ -24,7 +24,6 @@ public class LineWriter implements AutoCloseable{
 
     @Override
     public void close() throws Exception {
-        System.out.println("closed");
         writer.close();
     }
 }
