@@ -27,10 +27,10 @@ public class MergingIterable<T extends Comparable<T>> implements Iterable<T> {
             private final List<T> values;
             {
                 List<T> list = new ArrayList<>();
-                for (int i = 0; i < iterators.size(); i++) {
+                for (Iterator<T> iterator : iterators) {
                     T next = null;
                     while (next == null) {
-                        next = getNext(i);
+                        next = iterator.next();
                     }
                     list.add(next);
                 }
@@ -62,19 +62,11 @@ public class MergingIterable<T extends Comparable<T>> implements Iterable<T> {
                     }
                 }
                 boolean changerHasNext = iterators.get(index).hasNext();
-                T next = changerHasNext ? getNext(index): null;
+                T next = changerHasNext ? iterators.get(index).next() : null;
                 values.set(index, next);
                 return result;
             }
 
-            private T getNext(int i) {
-                try {
-                    return iterators.get(i).next();
-                } catch (IllegalStateException | IllegalArgumentException e) {
-                    System.out.println(e.getMessage());
-                    return getNext(i);
-                }
-            }
         };
     }
 }
